@@ -7,6 +7,6 @@ const tweetSchema = new Schema({
         type: String,
         required: true
     }
-}, { timestamp: true });
+}, { timestamps: true });
 
 mongoose.model('tweets', tweetSchema);

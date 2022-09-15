@@ -17,7 +17,7 @@ mongoose.connect(keys.mongoURI, {
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", function () {
-    console.log("Connected successfully");
+    console.log("db Connected successfully");
 });
 
 const PORT = process.env.PORT || 80;

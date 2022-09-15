@@ -17,7 +17,7 @@ router.get('/signIn', async (req, res) => {
             throw new Error();
         }
         const token = await user.generateAuthToken();
-        res.send({ _user: token });
+        res.status(200).send({ _user: token });
     } catch (err) {
         res.status(422).send('User not Found');
     }
@@ -35,7 +35,7 @@ router.post('/signUp', async (req, res) => {
     try {
         await user.save();
         const token = await user.generateAuthToken();
-        res.send({ _user: token });
+        res.status(200).send({ _user: token });
     } catch (err) {
         res.status(422).send(err);
     }
