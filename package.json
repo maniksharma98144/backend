@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha **/*.spec.js",
+    "report": "mocha --reporter mochawesome",
     "start": "nodemon index.js"
   },
   "dependencies": {
@@ -16,10 +17,15 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.4",
     "mongoose": "^5.12.12",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.5.0",
     "validator": "^13.6.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.7",
+    "supertest": "^6.2.4"
   },
   "author": "Manik Sharma",
   "license": "ISC"
