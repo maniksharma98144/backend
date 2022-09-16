@@ -5,6 +5,7 @@ module.exports = router;
 const mongoose = require('mongoose');
 const User = mongoose.model('users');
 
+// endpoint for signIn
 router.get('/signIn', async (req, res) => {
     const { userId, password } = req.query;
     try {
@@ -23,6 +24,7 @@ router.get('/signIn', async (req, res) => {
     }
 });
 
+// endpoint for signUp
 router.post('/signUp', async (req, res) => {
     const { firstName, lastName, userId, password } =
         req.body;

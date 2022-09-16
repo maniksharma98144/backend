@@ -7,6 +7,7 @@ const auth = require('../middleware/auth');
 
 const Tweet = mongoose.model('tweets');
 
+// endpoint to get all the tweets of the current user
 router.get('/getAll', auth, async (req, res) => {
     const _user = req.user._id;
     try {
@@ -22,6 +23,7 @@ router.get('/getAll', auth, async (req, res) => {
     }
 })
 
+// endpoint to get tweet by id
 router.get('/:_id', auth, async (req, res) => {
     const _id = req.params._id
     try {
@@ -32,6 +34,7 @@ router.get('/:_id', auth, async (req, res) => {
     }
 })
 
+// endpoint to add a new tweet by the current user
 router.put('/add', auth, async (req, res) => {
     const { text } = req.body;
     const _user = req.user._id;
@@ -47,6 +50,7 @@ router.put('/add', auth, async (req, res) => {
     }
 })
 
+// endpoint to update tweet by the current user
 router.post('/update', auth, async (req, res) => {
     const { _id, text } = req.body;
     try {
@@ -59,6 +63,7 @@ router.post('/update', auth, async (req, res) => {
     }
 });
 
+// endpoint to delete tweet by id
 router.delete('/delete/:_id', auth, async (req, res) => {
     const _id = req.params._id;
     try {

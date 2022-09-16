@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { Schema } = mongoose;
 
+// schema for user
 const userSchema = new Schema({
     firstName: {
         type: String,
@@ -32,6 +32,7 @@ const userSchema = new Schema({
     }
 });
 
+// schema method to generate auth token for the current user
 userSchema.methods.generateAuthToken = async function () {
     const user = this;
     const token = jwt.sign({ _id: user._id.toString() }, 'backend', {
