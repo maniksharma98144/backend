@@ -8,6 +8,25 @@ const auth = require('../middleware/auth');
 const Tweet = mongoose.model('tweets');
 
 // endpoint to get all the tweets of the current user
+/**
+ * @swagger
+ * /tweets/getAll:
+ *    get:
+ *      tags: 
+ *        - Tweets
+ *      description: get all the tweets by user
+ *      parameters:
+ *        - name: Authorization
+ *          in: header
+ *          required: true
+ *          type: string
+ *          description: auth header
+ *      responses:
+ *          200:
+ *              description: Ok
+ *          422:
+ *              description: error
+ */
 router.get('/getAll', auth, async (req, res) => {
     const _user = req.user._id;
     try {
@@ -24,6 +43,29 @@ router.get('/getAll', auth, async (req, res) => {
 })
 
 // endpoint to get tweet by id
+/**
+ * @swagger
+ * /tweets/:_id:
+ *    get:
+ *      tags: 
+ *        - Tweets
+ *      description: get tweets by id
+ *      parameters:
+ *        - name: Authorization
+ *          in: header
+ *          required: true
+ *          type: string
+ *          description: auth header
+ *        - name: _id
+ *          in : param
+ *          type: string
+ *          description: id of the tweet
+ *      responses:
+ *          200:
+ *              description: Ok
+ *          422:
+ *              description: error
+ */
 router.get('/:_id', auth, async (req, res) => {
     const _id = req.params._id
     try {
@@ -35,6 +77,33 @@ router.get('/:_id', auth, async (req, res) => {
 })
 
 // endpoint to add a new tweet by the current user
+/**
+ * @swagger
+ * /tweets/add:
+ *    put:
+ *      tags: 
+ *        - Tweets
+ *      description: add tweet
+ *      parameters:
+ *        - name: Authorization
+ *          in: header
+ *          required: true
+ *          type: string
+ *          description: auth header
+ *        - name: tweet
+ *          in : body
+ *          schema:
+ *              type : object
+ *              properties:
+ *                  text:
+ *                      type: string
+ *          description: tweet text
+ *      responses:
+ *          200:
+ *              description: Ok
+ *          422:
+ *              description: error
+ */
 router.put('/add', auth, async (req, res) => {
     const { text } = req.body;
     const _user = req.user._id;
@@ -51,6 +120,35 @@ router.put('/add', auth, async (req, res) => {
 })
 
 // endpoint to update tweet by the current user
+/**
+ * @swagger
+ * /tweets/update:
+ *    post:
+ *      tags: 
+ *        - Tweets
+ *      description: update tweet
+ *      parameters:
+ *        - name: Authorization
+ *          in: header
+ *          required: true
+ *          type: string
+ *          description: auth header
+ *        - name: tweet
+ *          in : body
+ *          schema:
+ *              type : object
+ *              properties:
+ *                  _id:
+ *                      type: string
+ *                  text:
+ *                      type: string
+ *          description: tweet text
+ *      responses:
+ *          200:
+ *              description: Ok
+ *          422:
+ *              description: error
+ */
 router.post('/update', auth, async (req, res) => {
     const { _id, text } = req.body;
     try {
@@ -64,6 +162,29 @@ router.post('/update', auth, async (req, res) => {
 });
 
 // endpoint to delete tweet by id
+/**
+ * @swagger
+ * /tweets/delete/:_id:
+ *    delete:
+ *      tags: 
+ *        - Tweets
+ *      description: update tweet
+ *      parameters:
+ *        - name: Authorization
+ *          in: header
+ *          required: true
+ *          type: string
+ *          description: auth header
+ *        - name: _id
+ *          in : param
+ *          type: string
+ *          description: id of the tweet
+ *      responses:
+ *          200:
+ *              description: Ok
+ *          422:
+ *              description: error
+ */
 router.delete('/delete/:_id', auth, async (req, res) => {
     const _id = req.params._id;
     try {

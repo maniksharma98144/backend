@@ -6,6 +6,32 @@ const mongoose = require('mongoose');
 const User = mongoose.model('users');
 
 // endpoint for signIn
+/**
+ * @swagger
+ * /users/signIn:
+ *    get:
+ *      tags: 
+ *        - Users
+ *      description: signIn user
+ *      parameters:
+ *        - name: userId
+ *          in: query
+ *          required: true
+ *          description: userId
+ *          schema:
+ *              type : string
+ *        - name: password
+ *          in: query
+ *          required: true
+ *          description: password
+ *          schema:
+ *              type : string
+ *      responses:
+ *          200:
+ *              description: Ok
+ *          422:
+ *              description: error
+ */
 router.get('/signIn', async (req, res) => {
     const { userId, password } = req.query;
     try {
@@ -25,6 +51,34 @@ router.get('/signIn', async (req, res) => {
 });
 
 // endpoint for signUp
+/**
+ * @swagger
+ * /users/signUp:
+ *    post:
+ *      tags: 
+ *        - Users
+ *      description: signUp user
+ *      parameters:
+ *        - in: body
+ *          name: user
+ *          description: user to create
+ *          schema:
+ *              type : object
+ *              properties:
+ *                  firstName:
+ *                      type: string
+ *                  lastName:
+ *                      type: string
+ *                  userId:
+ *                      type: string
+ *                  password:
+ *                      type: string
+ *      responses:
+ *          200:
+ *              description: Ok
+ *          422:
+ *              description: error
+ */
 router.post('/signUp', async (req, res) => {
     const { firstName, lastName, userId, password } =
         req.body;
